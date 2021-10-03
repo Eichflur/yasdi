@@ -45,7 +45,7 @@
 
 static TLevel currLevel = LEV_1;
 
-static char p1_[] = "Höllenhorst";
+static char p1_[] = "HÃ¶llenhorst";
 static char p1[]  = {0x2d,0x2b,0x2d,0x4b,0x5d,0x50,0x48,0x4d,0x4f,0x00};
 static char p2_[] = "Himberheinz";
 static char p2[]  = {0x51,0x5c,0x28,0x28,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -86,6 +86,10 @@ BOOL TSecurity_SetNewAccessLevel(char * user, char * passwd)
    }
    else if (strcmp("inst", user) == 0)
    {
+      // Disable Security
+      currLevel = LEV_2;
+      return true;
+
       char * b  = p2;
       char * p3 = &p2[4];
       int y, y2;
@@ -123,6 +127,10 @@ BOOL TSecurity_SetNewAccessLevel(char * user, char * passwd)
    }
    else if (strcmp("sma", user) == 0)
    {
+      // Disabled security
+      currLevel = LEV_3;
+      return true;
+
       char * b = p1;
       while(*b != 0 && *tpsw != 0)
       {
